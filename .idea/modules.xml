@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/javaBase.iml" filepath="$PROJECT_DIR$/.idea/javaBase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaapi/javaapi.iml" filepath="$PROJECT_DIR$/javaapi/javaapi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mavenparent/mavenparent.iml" filepath="$PROJECT_DIR$/mavenparent/mavenparent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/redismonitor/redismonitor.iml" filepath="$PROJECT_DIR$/redismonitor/redismonitor.iml" />
+    </modules>
+  </component>
+</project>
