@@ -1,15 +1,13 @@
-package com.example.javaapi;
+package com.example.disruptor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavaapiApplication {
-
+public class DisruptorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JavaapiApplication.class, args);
+        SpringApplication.run(DisruptorApplication.class, args);
     }
- 
 
 }

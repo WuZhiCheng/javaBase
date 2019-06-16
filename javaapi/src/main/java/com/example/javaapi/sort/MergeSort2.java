@@ -3,7 +3,7 @@ package com.example.javaapi.sort;
 import java.util.Arrays;
 
 /**
- * @Description: TODO(用一句话描述该文件做什么)
+ * @Description: 并归排序2
  * @author: wuzhicheng
  * @date: 15:53 2019/5/4
  * @company:北京今汇在线
