@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>flink</groupId>
+    <artifactId>flink.test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-java</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-java_2.12</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>flink</groupId>
+            <artifactId>flink-dist</artifactId>
+            <version>2.11</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/flink-dist_2.11-1.8.1.jar</systemPath>
+        </dependency>
+
+    </dependencies>
+
+    <!--<build>
+        <plugins>
+            &lt;!&ndash; The configuration of maven-jar-plugin &ndash;&gt;
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                &lt;!&ndash; The configuration of the plugin &ndash;&gt;
+                <configuration>
+                    &lt;!&ndash; Configuration of the archiver &ndash;&gt;
+                    <archive>
+                        &lt;!&ndash;
+                            生成的jar中，不要包含pom.xml和pom.properties这两个文件
+                        &ndash;&gt;
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        &lt;!&ndash; Manifest specific configuration &ndash;&gt;
+                        <manifest>
+                            &lt;!&ndash;
+                                是否要把第三方jar放到manifest的classpath中
+                            &ndash;&gt;
+                            <addClasspath>true</addClasspath>
+                            &lt;!&ndash;
+                               生成的manifest中classpath的前缀，因为要把第三方jar放到lib目录下，所以classpath的前缀是lib/
+                           &ndash;&gt;
+                            <classpathPrefix>lib/</classpathPrefix>
+                            &lt;!&ndash;
+                                应用的main class
+                            &ndash;&gt;
+                            <mainClass>dbRobot.BeanRobot</mainClass>
+                        </manifest>
+                    </archive>
+                    &lt;!&ndash;
+                        过滤掉不希望包含在jar中的文件
+                    &ndash;&gt;
+                    <excludes>
+                        <exclude>${project.basedir}/xml/*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            &lt;!&ndash; The configuration of maven-assembly-plugin &ndash;&gt;
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                &lt;!&ndash; The configuration of the plugin &ndash;&gt;
+                <configuration>
+                    &lt;!&ndash; Specifies the configuration file of the assembly plugin &ndash;&gt;
+                    <descriptors>
+                        <descriptor>src/main/assembly/package.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>-->
+   <!-- <assembly>
+        <id>bin</id>
+        &lt;!&ndash; 最终打包成一个用于发布的zip文件 &ndash;&gt;
+        <formats>
+            <format>zip</format>
+        </formats>
+
+        &lt;!&ndash; Adds dependencies to zip package under lib directory &ndash;&gt;
+        <dependencySets>
+            <dependencySet>
+                &lt;!&ndash;
+                   不使用项目的artifact，第三方jar不要解压，打包进zip文件的lib目录
+               &ndash;&gt;
+                <useProjectArtifact>false</useProjectArtifact>
+                <outputDirectory>lib</outputDirectory>
+                <unpack>false</unpack>
+            </dependencySet>
+        </dependencySets>
+
+        <fileSets>
+            &lt;!&ndash; 把项目相关的说明文件，打包进zip文件的根目录 &ndash;&gt;
+            <fileSet>
+                <directory>${project.basedir}</directory>
+                <outputDirectory>/</outputDirectory>
+                <includes>
+                    <include>README*</include>
+                    <include>LICENSE*</include>
+                    <include>NOTICE*</include>
+                </includes>
+            </fileSet>
+
+            &lt;!&ndash; 把项目的配置文件，打包进zip文件的config目录 &ndash;&gt;
+            <fileSet>
+                <directory>${project.basedir}\src\main\config</directory>
+                <outputDirectory>config</outputDirectory>
+                <includes>
+                    <include>*.xml</include>
+                    <include>*.properties</include>
+                </includes>
+            </fileSet>
+
+            &lt;!&ndash; 把项目的脚本文件目录（ src/main/scripts ）中的启动脚本文件，打包进zip文件的跟目录 &ndash;&gt;
+            <fileSet>
+                <directory>${project.build.scriptSourceDirectory}</directory>
+                <outputDirectory></outputDirectory>
+                <includes>
+                    <include>startup.*</include>
+                </includes>
+            </fileSet>
+
+            &lt;!&ndash; 把项目的脚本文件（除了启动脚本文件），打包进zip文件的script目录 &ndash;&gt;
+            <fileSet>
+                <directory>${project.build.scriptSourceDirectory}</directory>
+                <outputDirectory></outputDirectory>
+                <includes>
+                    <exclude>startup.*</exclude>
+                </includes>
+            </fileSet>
+
+            &lt;!&ndash; 把项目自己编译出来的jar文件，打包进zip文件的根目录 &ndash;&gt;
+            <fileSet>
+                <directory>${project.build.directory}</directory>
+                <outputDirectory></outputDirectory>
+                <includes>
+                    <include>*.jar</include>
+                </includes>
+            </fileSet>
+        </fileSets>
+    </assembly>-->
+</project>
