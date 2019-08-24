@@ -15,7 +15,7 @@ public class WindowWordCount {
 
         DataStream<Tuple2<String, Integer>> dataStream = env
                 //监听10991端口的数据，前提是启动了10991的server端口
-                .socketTextStream("192.168.13.3", 10991)
+                .socketTextStream("127.0.0.1", 10991)
                 .flatMap(new Splitter())
                 .keyBy(0)
                 .timeWindow(Time.seconds(5))

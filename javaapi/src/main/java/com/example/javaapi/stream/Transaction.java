@@ -1,7 +1,5 @@
 package com.example.javaapi.stream;
 
-import com.alibaba.fastjson.JSON;
-
 /**
  * All rights Reserved, Designed By a.96bill.com
  *
@@ -49,8 +47,4 @@ public class Transaction {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-      return  JSON.toJSONString(this);
-    }
 }
